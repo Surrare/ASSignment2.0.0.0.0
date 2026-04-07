@@ -9,13 +9,17 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public String getAccountNumber() { return accountNumber; }
+    public void deposit(double amount) { this.balance += amount; }
+    public boolean withdraw(double amount) {
+        if (amount <= balance) { this.balance -= amount; return true; }
+        return false;
+    }
+
     public String getUsername() { return username; }
     public double getBalance() { return balance; }
-    public void setBalance(double balance) { this.balance = balance; }
 
     @Override
     public String toString() {
-        return "Account[" + accountNumber + "] " + username + " – Balance: " + (int) balance;
+        return String.format("[%s] %-10s | Balance: $%.2f", accountNumber, username, balance);
     }
 }
