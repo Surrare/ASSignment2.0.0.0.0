@@ -6,13 +6,13 @@ import java.util.Queue;
 public class AccountRequestManager {
     private Queue<AccountManager.AccountLike> accountRequests = new LinkedList<>();
 
-    // Task 5 – User submits account opening request
+    // Enqueues a new account opening request.
     public void submitRequest(AccountManager.AccountLike account) {
         accountRequests.add(account);
         System.out.println("Account request submitted for: " + account.getUsername());
     }
 
-    // Task 5 – Admin processes next request (returns it to be added to AccountManager)
+    // Processes the next pending request (FIFO).
     public AccountManager.AccountLike processNextRequest() {
         if (accountRequests.isEmpty()) { System.out.println("No pending account requests."); return null; }
         AccountManager.AccountLike processed = accountRequests.poll();
@@ -20,7 +20,7 @@ public class AccountRequestManager {
         return processed;
     }
 
-    // Task 5 – Display all pending requests
+    // Displays all pending account requests.
     public void displayPendingRequests() {
         if (accountRequests.isEmpty()) { System.out.println("No pending account requests."); return; }
         System.out.println("Pending Account Requests:");

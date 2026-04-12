@@ -16,7 +16,7 @@ public class BankSystem {
         accountRequestManager = new AccountRequestManager();
     }
 
-    // Task 6 – Part 2: Physical Data Structures (Array)
+    // Demonstrates a physical array with predefined accounts.
     public void demonstratePhysicalArray() {
         System.out.println("\n===== Part 2: Physical Data Structures (Array) =====");
         BankAccount[] bankAccounts = new BankAccount[3];

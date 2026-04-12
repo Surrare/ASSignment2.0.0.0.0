@@ -5,26 +5,26 @@ import java.util.Stack;
 public class TransactionManager {
     private Stack<String> transactionHistory = new Stack<>();
 
-    // Task 3 – Add transaction to stack
+    // Records a transaction.
     public void addTransaction(String transaction) {
         transactionHistory.push(transaction);
         System.out.println(transaction);
     }
 
-    // Task 3 – Undo last transaction (pop)
+    // Removes the most recent transaction (LIFO).
     public void undoLastTransaction() {
         if (transactionHistory.isEmpty()) { System.out.println("No transactions to undo."); return; }
         String removed = transactionHistory.pop();
         System.out.println("Undo -> " + removed + " removed");
     }
 
-    // Task 3 – Display last transaction (peek)
+    // Shows the most recent transaction without removing it.
     public void displayLastTransaction() {
         if (transactionHistory.isEmpty()) { System.out.println("No transactions recorded."); return; }
         System.out.println("Last transaction: " + transactionHistory.peek());
     }
 
-    // Display full history
+    // Displays the full transaction history.
     public void displayAllTransactions() {
         if (transactionHistory.isEmpty()) { System.out.println("Transaction history is empty."); return; }
         System.out.println("Transaction History:");

@@ -3,6 +3,8 @@ package structures;
 import java.util.LinkedList;
 
 public class AccountManager {
+    // Minimal account contract used so classes in this package do not depend
+    // directly on default-package classes.
     public interface AccountLike {
         String getAccountNumber();
         String getUsername();
@@ -12,13 +14,13 @@ public class AccountManager {
 
     private LinkedList<AccountLike> accounts = new LinkedList<>();
 
-    // Task 1 – Add a new account
+    // Adds a new account to the main linked list.
     public void addAccount(AccountLike account) {
         accounts.add(account);
         System.out.println("Account added successfully.");
     }
 
-    // Task 1 – Display all accounts
+    // Prints all registered accounts.
     public void displayAccounts() {
         if (accounts.isEmpty()) {
             System.out.println("No accounts found.");
@@ -31,7 +33,7 @@ public class AccountManager {
         }
     }
 
-    // Task 1 – Search account by username
+    // Finds an account by username (case-insensitive).
     public AccountLike searchByUsername(String username) {
         for (AccountLike acc : accounts) {
             if (acc.getUsername().equalsIgnoreCase(username)) return acc;
@@ -39,7 +41,7 @@ public class AccountManager {
         return null;
     }
 
-    // Task 2 – Deposit money
+    // Deposits money into the selected account.
     public void deposit(String username, double amount) {
         AccountLike acc = searchByUsername(username);
         if (acc == null) { System.out.println("Account not found."); return; }
@@ -48,7 +50,7 @@ public class AccountManager {
         System.out.println("New balance: " + (int) acc.getBalance());
     }
 
-    // Task 2 – Withdraw money
+    // Withdraws money if the account has sufficient balance.
     public void withdraw(String username, double amount) {
         AccountLike acc = searchByUsername(username);
         if (acc == null) { System.out.println("Account not found."); return; }
@@ -58,7 +60,7 @@ public class AccountManager {
         System.out.println("New balance: " + (int) acc.getBalance());
     }
 
-    // Task 5 – Move approved request into main LinkedList
+    // Adds an approved account request into the main list.
     public void addApprovedAccount(AccountLike account) {
         accounts.add(account);
         System.out.println("Account for " + account.getUsername() + " approved and added to system.");

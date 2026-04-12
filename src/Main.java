@@ -8,25 +8,19 @@ public class Main {
     static int        accountCounter = 100;
 
     public static void main(String[] args) {
-
-        // ── Part 1: Auto-demo of all Tasks ──────────────────────────────
+        // Run assignment demos first, then enter interactive mode.
         demonstrateTasks();
 
-        // ── Part 2: Physical Array Demo ──────────────────────────────────
         system.demonstratePhysicalArray();
 
-        // ── Part 3: Interactive Mini Banking Menu ─────────────────────────
         System.out.println("\n===== Part 3: Mini Banking Menu =====");
         mainMenu();
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // PART 1 – Demo all Tasks 1-5 with sample data
-    // ─────────────────────────────────────────────────────────────────────
+    // Demonstrates tasks 1-5 with predefined sample data.
     private static void demonstrateTasks() {
         System.out.println("===== Part 1: Logical Data Structures =====\n");
 
-        // Task 1 – LinkedList: add & display accounts
         System.out.println("--- Task 1: Bank Account Storage (LinkedList) ---");
         system.accountManager.addAccount(new BankAccount("ACC001", "Ali",  150000));
         system.accountManager.addAccount(new BankAccount("ACC002", "Sara", 220000));
@@ -34,26 +28,22 @@ public class Main {
         AccountManager.AccountLike found = system.accountManager.searchByUsername("Ali");
         System.out.println("Search 'Ali': " + (found != null ? found : "Not found"));
 
-        // Task 2 – Deposit & Withdraw
         System.out.println("\n--- Task 2: Deposit & Withdraw ---");
         System.out.println("Enter username: Ali");
         system.accountManager.deposit("Ali", 50000);
 
-        // Task 3 – Stack (LIFO): Transaction History
         System.out.println("\n--- Task 3: Transaction History (Stack / LIFO) ---");
         system.transactionManager.addTransaction("Deposit 50000 to Ali");
         system.transactionManager.addTransaction("Withdraw 20000 from Ali");
         system.transactionManager.displayLastTransaction();
         system.transactionManager.undoLastTransaction();
 
-        // Task 4 – Queue (FIFO): Bill Payment
         System.out.println("\n--- Task 4: Bill Payment Queue (Queue / FIFO) ---");
         system.billQueueManager.addBill("Electricity Bill");
         system.billQueueManager.addBill("Internet Bill");
         system.billQueueManager.processNextBill();
         system.billQueueManager.displayQueue();
 
-        // Task 5 – Account Opening Queue (Admin Simulation)
         System.out.println("\n--- Task 5: Account Opening Queue (Admin Simulation) ---");
         system.accountRequestManager.submitRequest(new BankAccount("REQ001", "Omar", 0));
         system.accountRequestManager.submitRequest(new BankAccount("REQ002", "Lena", 0));
@@ -63,9 +53,7 @@ public class Main {
         system.accountRequestManager.displayPendingRequests();
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // PART 3 – Interactive Menus
-    // ─────────────────────────────────────────────────────────────────────
+    // Top-level navigation for bank, ATM, and admin flows.
     private static void mainMenu() {
         boolean running = true;
         while (running) {
@@ -85,7 +73,7 @@ public class Main {
         }
     }
 
-    // ── Bank Menu ─────────────────────────────────────────────────────────
+    // Customer operations executed inside the bank.
     private static void bankMenu() {
         boolean back = false;
         while (!back) {
@@ -127,7 +115,7 @@ public class Main {
         }
     }
 
-    // ── ATM Menu ──────────────────────────────────────────────────────────
+    // ATM operations for quick balance checks and withdrawals.
     private static void atmMenu() {
         boolean back = false;
         while (!back) {
@@ -158,7 +146,7 @@ public class Main {
         }
     }
 
-    // ── Admin Menu ────────────────────────────────────────────────────────
+    // Admin-only operations for queues, accounts, and transaction history.
     private static void adminMenu() {
         boolean back = false;
         while (!back) {
@@ -196,6 +184,7 @@ public class Main {
         }
     }
 
+    // Parses a number safely and falls back to 0 on invalid input.
     private static double parseDouble(String s) {
         try   { return Double.parseDouble(s.trim()); }
         catch (NumberFormatException e) { System.out.println("Invalid number, using 0."); return 0; }
