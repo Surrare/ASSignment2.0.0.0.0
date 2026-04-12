@@ -1,9 +1,7 @@
-
 import structures.AccountManager;
-import structures.TransactionManager;
-import structures.BillQueueManager;
 import structures.AccountRequestManager;
-import structures.BankAccount;
+import structures.BillQueueManager;
+import structures.TransactionManager;
 
 public class BankSystem {
     public final AccountManager        accountManager;

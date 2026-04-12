@@ -1,6 +1,5 @@
-import structures.BankAccount;
-
 import java.util.Scanner;
+import structures.AccountManager;
 
 public class Main {
 
@@ -32,7 +31,7 @@ public class Main {
         system.accountManager.addAccount(new BankAccount("ACC001", "Ali",  150000));
         system.accountManager.addAccount(new BankAccount("ACC002", "Sara", 220000));
         system.accountManager.displayAccounts();
-        BankAccount found = system.accountManager.searchByUsername("Ali");
+        AccountManager.AccountLike found = system.accountManager.searchByUsername("Ali");
         System.out.println("Search 'Ali': " + (found != null ? found : "Not found"));
 
         // Task 2 – Deposit & Withdraw
@@ -59,7 +58,7 @@ public class Main {
         system.accountRequestManager.submitRequest(new BankAccount("REQ001", "Omar", 0));
         system.accountRequestManager.submitRequest(new BankAccount("REQ002", "Lena", 0));
         system.accountRequestManager.displayPendingRequests();
-        BankAccount approved = system.accountRequestManager.processNextRequest();
+        AccountManager.AccountLike approved = system.accountRequestManager.processNextRequest();
         if (approved != null) system.accountManager.addApprovedAccount(approved);
         system.accountRequestManager.displayPendingRequests();
     }
@@ -141,7 +140,7 @@ public class Main {
                 case "1":
                     System.out.print("Enter username: ");
                     String u = scanner.nextLine().trim();
-                    BankAccount acc = system.accountManager.searchByUsername(u);
+                    AccountManager.AccountLike acc = system.accountManager.searchByUsername(u);
                     if (acc != null) System.out.println("Balance for " + u + ": " + (int) acc.getBalance());
                     else             System.out.println("Account not found.");
                     break;
@@ -178,7 +177,7 @@ public class Main {
                     system.accountRequestManager.displayPendingRequests();
                     System.out.print("Process next request? (y/n): ");
                     if (scanner.nextLine().trim().equalsIgnoreCase("y")) {
-                        BankAccount approved = system.accountRequestManager.processNextRequest();
+                        AccountManager.AccountLike approved = system.accountRequestManager.processNextRequest();
                         if (approved != null) system.accountManager.addApprovedAccount(approved);
                     }
                     break;

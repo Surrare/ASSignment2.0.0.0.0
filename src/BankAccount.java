@@ -1,6 +1,6 @@
-package structures;
+import structures.AccountManager;
 
-public class BankAccount {
+public class BankAccount implements AccountManager.AccountLike {
     private String accountNumber;
     private String username;
     private double balance;
